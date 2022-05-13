@@ -30,3 +30,5 @@ useFindAndModify: false,
 
 ### 해결
 따라서, `mongoos.connect`의 해당 값들을 삭제하거나 주석처리 해야한다.
+
+[stack overflow 참고](https://stackoverflow.com/questions/68958221/mongoparseerror-options-usecreateindex-usefindandmodify-are-not-supported)
