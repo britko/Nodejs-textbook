@@ -1,7 +1,7 @@
 const express = require('express');
 const { v4: uuidv4 } = require('uuid');
 const { User, Domain } = require('../models');
-const { isLoggedIn } = require('./middelwares');
+const { isLoggedIn } = require('./middlewares');
 
 const router = express.Router()
 

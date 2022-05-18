@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const url = require('url');
 
-const { verifyToken, apiLimiter } = require('./middelwares');
+const { verifyToken, apiLimiter } = require('./middlewares');
 const { Domain, User, Post, Hashtag } = require('../models');
 const { route } = require('./v1');
 
