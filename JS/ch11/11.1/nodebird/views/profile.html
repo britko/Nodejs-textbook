@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <div class="timeline">
+    <div class="followings half">
+      <h2>팔로잉 목록</h2>
+      {% if user.Followings %}
+        {% for following in user.Followings %}
+          <div>
+            <input type="hidden" value="{{following.id}}" class="following-user-id">
+            {{following.nick}}
+            {% if following.nick %}
+              <button class="cancle-follow">팔로우취소</button>
+            {% endif %}
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+    <div class="followers half">
+      <h2>팔로워 목록</h2>
+      {% if user.Followers %}
+        {% for follower in user.Followers %}
+          <div>{{follower.nick}}</div>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block script %}
+  <script>
+    document.querySelectorAll('.cancle-follow').forEach(function(tag) {
+      tag.addEventListener('click', function() {
+        const myId = document.querySelector('#my-id');
+        if (myId) {
+          const userId = tag.parentNode.querySelector('.following-user-id').value;
+          if (userId !== myId.value) {
+            if (confirm('팔로를 취소하시겠습니까?')) {
+              axios.post(`/user/${userId}/follow`)
+                .then(() => {
+                  location.reload();
+                })
+                .catch((err) => {
+                  console.error(err);
+                });
+            }
+          }
+        }
+      });
+    });
+  </script>
+{% endblock %}
